@@ -12,7 +12,7 @@ def get_data():
 
     table = soup.find('tbody')
 
-    for row in table.find_all('tr', limit=3):
+    for row in table.find_all('tr', limit=50):
         try:
             name = row.find('a', class_='tw-hidden lg:tw-flex font-bold tw-items-center tw-justify-between').text.strip()
             symbol = row.find('a', class_='d-lg-none font-bold tw-w-12').text.strip()
@@ -24,4 +24,4 @@ def get_data():
 
         data.append((name, symbol, price_usdt, change_24))
 
-        return data
+    return data
