@@ -1,5 +1,7 @@
-# import scrapers.scrape_coingecko
+import scrapers.scrape_coingecko
 
+if __name__ == "__main__":
+    coingecko_data = scrapers.scrape_coingecko.get_data()
 
-# if __name__ == "__main__":
+    print(coingecko_data)
     
