@@ -20,7 +20,7 @@ def get_data():
             change_24 = row.find('span', {"data-24h" : "true"}).text.strip()
 
         except AttributeError:
-            pass
+            return None
 
         data.append((name, symbol, price_usdt, change_24))
 

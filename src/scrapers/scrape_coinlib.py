@@ -21,6 +21,6 @@ def get_data():
             data.append((name, symbol, price_usdt, change_24))
 
         except AttributeError:
-            pass
+            return None
 
     return data
