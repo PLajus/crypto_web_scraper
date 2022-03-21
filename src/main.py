@@ -9,16 +9,16 @@ if __name__ == "__main__":
     required_coins = ['BTC', 'ETH', 'ADA', 'DOT']
 
     while True:
-        coins = scrapers.scrape_coingecko.get_data()
+        try:
+            coins = scrapers.scrape_coingecko.get_data()
 
-        if coins is None:
-            coins = scrapers.scrape_coinlib.get_data()
+            if coins is None:
+                coins = scrapers.scrape_coinlib.get_data() 
 
-        data = filter_coins(coins, required_coins)
-        print(data)
+            data = filter_coins(coins, required_coins)
+            print(data)
 
-    # TODO: push data to DB
-        time.sleep(10)
-
-
-    
+            # TODO: push data to DB
+            time.sleep(10)
+        except:
+            raise TypeError
