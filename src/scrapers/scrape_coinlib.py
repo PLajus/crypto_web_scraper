@@ -18,9 +18,9 @@ def get_data():
             price_usdt = row.select_one('span[class*="tbl-price avgprice"]').text.strip()
             change_24 = row.select_one('span[class*="tbl-price pr-change delta"]').text.strip()
 
-            data.append((name, symbol, price_usdt, change_24))
-
         except AttributeError:
-            return None
+            continue
 
+        data.append({"name": name, "symbol": symbol, "price": price_usdt, "change": change_24})
+   
     return data

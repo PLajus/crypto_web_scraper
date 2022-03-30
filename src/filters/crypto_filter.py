@@ -1,7 +1,12 @@
 def filter_coins(coins, required_coins):
-    data = []
-    for coin in coins:
-        if coin[1] in required_coins:
-            data.append(coin)
+    """Filters coins by symbol"""
 
-    return data
+    if not required_coins or not coins:
+        raise ValueError
+
+    filtered_coins = []
+    for coin in coins:
+        if coin["symbol"] in required_coins:
+            filtered_coins.append(coin)
+
+    return filtered_coins
