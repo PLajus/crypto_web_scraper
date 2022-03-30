@@ -1,4 +1,5 @@
 import time
+import json
 
 import scrapers.scrape_coingecko
 import scrapers.scrape_coinlib
@@ -12,11 +13,13 @@ if __name__ == "__main__":
         try:
             coins = scrapers.scrape_coingecko.get_data()
 
-            if coins is None:
+            if not coins:
                 coins = scrapers.scrape_coinlib.get_data() 
 
-            data = filter_coins(coins, required_coins)
-            print(data)
+            filtered_coins = filter_coins(coins, required_coins)
+
+            json_object = json.dumps(filtered_coins, indent = 4) 
+            print(json_object)
 
             # TODO: push data to DB
             time.sleep(10)
