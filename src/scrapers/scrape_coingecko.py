@@ -1,4 +1,5 @@
 from bs4 import BeautifulSoup
+from selenium import webdriver
 import requests
 
 def get_data():
@@ -6,11 +7,14 @@ def get_data():
 
     data = []
 
-    source = requests.get("https://www.coingecko.com/")
+    driver = webdriver.Chrome()
+    driver.get("https://www.coingecko.com/")
 
-    soup = BeautifulSoup(source.content, 'lxml')
+    html = driver.page_source
 
-    table = soup.find('tbody')
+    soup = BeautifulSoup(html, 'lxml')
+
+    table = soup.find('table')
 
     for row in table.find_all('tr', limit=50):
         try:
@@ -22,6 +26,6 @@ def get_data():
         except AttributeError:
             continue
 
-        data.append({"name": name, "symbol": symbol, "price": price_usdt, "change": change_24})
+        data.append({"name": name, "symbol": symbol, "price": float(price_usdt[1:].replace(",","")), "change": change_24})
 
     return data

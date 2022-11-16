@@ -5,5 +5,4 @@ def filter_coins(coins, required_coins):
         raise ValueError
 
     filtered_coins = [coin for coin in coins if coin["symbol"] in required_coins]
-    print(filtered_coins)
     return filtered_coins
